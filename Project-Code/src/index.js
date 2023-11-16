@@ -172,7 +172,6 @@ app.get("/explore", (req, res) => {
 // explore page external api call
 
 app.post('/explore', auth, async (req, res)=>{
-  console.log(req.body);
   axios({
     url: `https://www.googleapis.com/books/v1/volumes`,
     method: 'GET',
@@ -197,7 +196,6 @@ app.post('/explore', auth, async (req, res)=>{
     });
 
 });
-
 
 app.get('/Top3', function (req, res)
 {
