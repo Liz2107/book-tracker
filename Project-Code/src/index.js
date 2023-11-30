@@ -44,6 +44,7 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 const user = {
+  id : undefined,
   username: undefined,
   password: undefined,
   books_read: undefined,
@@ -103,13 +104,13 @@ app.post('/login', async (req,res) => {
       bcrypt.compare(req.body.password, data.password)
         .then((match) => {
           if (match) {
-            req.session.user = {
-              id: data.user_id,
-              username: data.username,
-              password: data.password, 
-              booksRead: data.books_read,
-              reviewsLeft: data.reviews_left
-          };
+            user.id = data.user_id;
+            user.username = data.username;
+            user.password = data.password;  
+            user.books_read = data.books_read;
+            user.reviews_left = data.reviews_left;
+            req.session.user = user;
+          
             req.session.save();
             res.redirect('/login');
           } else {
